@@ -40,7 +40,7 @@ import com.clarionmedia.infinitum.web.HttpClientRequest;
  * @version 1.0 08/14/12
  * @since 1.0
  */
-public class HashableHttpRequest extends RequestWrapper implements HttpClientRequest {
+public class HashableHttpRequest implements HttpClientRequest {
 
 	private RequestWrapper mHttpRequest;
 
@@ -53,12 +53,12 @@ public class HashableHttpRequest extends RequestWrapper implements HttpClientReq
 	 * @throws ProtocolException 
 	 */
 	public HashableHttpRequest(RequestWrapper request) throws ProtocolException {
-		super(request);
+		request.resetHeaders();
 		mHttpRequest = request;
 	}
 	
 	@Override
-	public HttpUriRequest unwrap() {
+	public RequestWrapper unwrap() {
 		return mHttpRequest;
 	}
 

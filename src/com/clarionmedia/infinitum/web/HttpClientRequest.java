@@ -1,6 +1,7 @@
 package com.clarionmedia.infinitum.web;
 
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.impl.client.RequestWrapper;
 
 /**
  * <p>
@@ -50,6 +51,6 @@ public interface HttpClientRequest extends HttpClientMessage {
 	 * 
 	 * @return {@code HttpUriRequest}
 	 */
-	HttpUriRequest unwrap();
+	RequestWrapper unwrap();
 
 }

@@ -371,7 +371,7 @@ public class CachingEnabledRestfulClient implements RestfulClient {
 
 	private RestResponse executeRequest(HashableHttpRequest hashableHttpRequest) {
 		if (mIsAuthenticated)
-			mAuthStrategy.authenticate(hashableHttpRequest);
+			mAuthStrategy.authenticate(hashableHttpRequest.unwrap());
 		if (mResponseCache.containsKey(hashableHttpRequest)) {
 			RestResponse cachedResponse = mResponseCache.get(hashableHttpRequest);
 			if (cachedResponse != null)
