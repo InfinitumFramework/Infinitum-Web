@@ -19,6 +19,7 @@
 
 package com.clarionmedia.infinitum.web.context;
 
+import com.clarionmedia.infinitum.context.BeanProvider;
 import com.clarionmedia.infinitum.context.InfinitumContext;
 import com.clarionmedia.infinitum.context.exception.InfinitumConfigurationException;
 import com.clarionmedia.infinitum.web.rest.AuthenticationStrategy;
@@ -33,7 +34,7 @@ import com.clarionmedia.infinitum.web.rest.AuthenticationStrategy;
  * @version 1.0 12/26/12
  * @since 1.0
  */
-public interface InfinitumWebContext extends InfinitumContext {
+public interface InfinitumWebContext extends InfinitumContext, BeanProvider {
 		
 	/**
 	 * Sets the {@link AuthenticationStrategy} for this

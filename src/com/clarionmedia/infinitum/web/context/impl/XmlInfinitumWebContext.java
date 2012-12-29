@@ -34,7 +34,6 @@ import com.clarionmedia.infinitum.context.impl.XmlRestfulContext.Authentication;
 import com.clarionmedia.infinitum.di.AbstractBeanDefinition;
 import com.clarionmedia.infinitum.di.BeanDefinitionBuilder;
 import com.clarionmedia.infinitum.di.BeanFactory;
-import com.clarionmedia.infinitum.di.impl.GenericBeanDefinitionBuilder;
 import com.clarionmedia.infinitum.web.context.InfinitumWebContext;
 import com.clarionmedia.infinitum.web.rest.AuthenticationStrategy;
 import com.clarionmedia.infinitum.web.rest.TokenGenerator;
@@ -52,10 +51,9 @@ import com.clarionmedia.infinitum.web.rest.impl.SharedSecretAuthentication;
  * 
  */
 public class XmlInfinitumWebContext implements InfinitumWebContext {
-	
+
 	private XmlApplicationContext mParentContext;
 	private List<InfinitumContext> mChildContexts;
-	private boolean mIsProcessed;
 
 	/**
 	 * Creates a new {@code XmlInfinitumWebContext} instance as a child of the
@@ -68,13 +66,16 @@ public class XmlInfinitumWebContext implements InfinitumWebContext {
 		mParentContext = parentContext;
 		mChildContexts = new ArrayList<InfinitumContext>();
 	}
-	
+
 	@Override
 	public void postProcess(Context context) {
-		if (mIsProcessed)
-			return;
-		registerWebComponents();
-		mIsProcessed = true;
+	}
+
+	@Override
+	public List<AbstractBeanDefinition> getBeans(BeanDefinitionBuilder beanDefinitionBuilder) {
+		List<AbstractBeanDefinition> beans = new ArrayList<AbstractBeanDefinition>();
+		beans.add(beanDefinitionBuilder.setName("$WebContext").setType(XmlInfinitumWebContext.class).build());
+		return beans;
 	}
 
 	@Override
@@ -171,13 +172,6 @@ public class XmlInfinitumWebContext implements InfinitumWebContext {
 		if (auth == null)
 			auth = new Authentication();
 		setAuthStrategy(strategy.getClass().getSimpleName());
-	}
-	
-	private void registerWebComponents() {
-		BeanFactory beanFactory = mParentContext.getBeanFactory();
-		BeanDefinitionBuilder beanDefinitionBuilder = new GenericBeanDefinitionBuilder(beanFactory);
-		AbstractBeanDefinition beanDefinition = beanDefinitionBuilder.setName("$WebContext").setType(XmlInfinitumWebContext.class).build();
-		beanFactory.registerBean(beanDefinition);
 	}
 
 }
