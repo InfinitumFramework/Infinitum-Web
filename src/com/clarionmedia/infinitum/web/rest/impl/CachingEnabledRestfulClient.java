@@ -47,7 +47,7 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
-import com.clarionmedia.infinitum.context.RestfulContext;
+import com.clarionmedia.infinitum.context.ContextFactory;
 import com.clarionmedia.infinitum.exception.InfinitumRuntimeException;
 import com.clarionmedia.infinitum.internal.DateFormatter;
 import com.clarionmedia.infinitum.internal.caching.AbstractCache;
@@ -81,12 +81,7 @@ public class CachingEnabledRestfulClient implements RestfulClient {
 		mLogger = Logger.getInstance(context, getClass().getSimpleName());
 		mHttpParams = new BasicHttpParams();
 		mResponseCache = new RestResponseCache();
-		mResponseCache.enableDiskCache(context.getAndroidContext(), AbstractCache.DISK_CACHE_INTERNAL);
-		RestfulContext restContext = context.getRestContext();
-		if (restContext != null) {
-			mIsAuthenticated = restContext.isRestAuthenticated();
-			mAuthStrategy = context.getAuthStrategy();
-		}
+		mResponseCache.enableDiskCache(ContextFactory.newInstance().getAndroidContext(), AbstractCache.DISK_CACHE_INTERNAL);
 	}
 
 	/**

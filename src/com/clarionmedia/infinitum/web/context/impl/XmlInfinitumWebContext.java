@@ -55,6 +55,7 @@ public class XmlInfinitumWebContext implements InfinitumWebContext {
 	
 	private XmlApplicationContext mParentContext;
 	private List<InfinitumContext> mChildContexts;
+	private boolean mIsProcessed;
 
 	/**
 	 * Creates a new {@code XmlInfinitumWebContext} instance as a child of the
@@ -70,7 +71,10 @@ public class XmlInfinitumWebContext implements InfinitumWebContext {
 	
 	@Override
 	public void postProcess(Context context) {
+		if (mIsProcessed)
+			return;
 		registerWebComponents();
+		mIsProcessed = true;
 	}
 
 	@Override
