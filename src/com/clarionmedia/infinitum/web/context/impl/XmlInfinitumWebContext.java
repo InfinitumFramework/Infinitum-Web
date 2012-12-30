@@ -122,6 +122,11 @@ public class XmlInfinitumWebContext implements InfinitumWebContext {
 	public InfinitumContext getParentContext() {
 		return mParentContext.getParentContext();
 	}
+	
+	@Override
+	public <T extends InfinitumContext> T getChildContext(Class<T> contextType) {
+		return mParentContext.getChildContext(contextType);
+	}
 
 	@Override
 	public RestfulContext getRestContext() {
