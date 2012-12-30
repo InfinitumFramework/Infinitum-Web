@@ -13,6 +13,7 @@ Web Features
 * Fine-grained REST client: low-level client for dealing directly with HTTP responses
 * Coarse-grained REST client: high-level client for retrieving HTTP responses as objects
 * Fully extensible: REST client can be easily extended or re-implemented for specific business needs
-* Flexible: register JSON or XML deserializers or implement your own message converter 
+* Flexible: register JSON or XML deserializers or implement your own message converter
+* Caching: HTTP/1.1-compliant caching in REST clients
 * Authentication support: enable token-based/shared-secret web service authentication or implement your own authentication strategy
 * Token generation: provides support for custom token generation for situations where a changing, per-user, or per-session shared secret is desirable
