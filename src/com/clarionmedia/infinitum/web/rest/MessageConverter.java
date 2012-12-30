@@ -25,21 +25,23 @@ import com.clarionmedia.infinitum.web.rest.impl.RestResponse;
  * <p>
  * Converts {@link RestResponse} messages to objects.
  * </p>
- *
+ * 
  * @author Tyler Treat
  * @version 1.0 12/23/12
  * @since 1.0
  */
 public interface MessageConverter {
 
-    /**
-     * Reads an object of the given type form the given input message and
-     * returns it.
-     *
-     * @param clazz    the type of the object to return
-     * @param response the response to convert
-     * @return converted object
-     */
-    <T> T convert(Class<T> clazz, RestResponse response);
+	/**
+	 * Reads an object of the given type form the given input message and
+	 * returns it.
+	 * 
+	 * @param clazz
+	 *            the type of the object to return
+	 * @param response
+	 *            the response to convert
+	 * @return converted object
+	 */
+	<T> T convert(Class<T> clazz, RestResponse response);
 
 }

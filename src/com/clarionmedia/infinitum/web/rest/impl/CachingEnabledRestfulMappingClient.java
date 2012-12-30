@@ -43,150 +43,150 @@ import com.clarionmedia.infinitum.web.rest.RestfulMappingClient;
  * {@link GsonMessageConverter} by default, meaning Gson must be on the class
  * path in this case.
  * </p>
- *
+ * 
  * @author Tyler
  * @version 1.0 12/23/12
  * @since 1.0
  */
 public class CachingEnabledRestfulMappingClient implements RestfulMappingClient {
 
-    private CachingEnabledRestfulClient mRestClient;
-    private MessageConverter mMessageConverter;
+	private CachingEnabledRestfulClient mRestClient;
+	private MessageConverter mMessageConverter;
 
-    public CachingEnabledRestfulMappingClient(InfinitumWebContext context) {
-        mRestClient = new CachingEnabledRestfulClient(context);
-        mMessageConverter = new GsonMessageConverter();
-    }
+	public CachingEnabledRestfulMappingClient(InfinitumWebContext context) {
+		mRestClient = new CachingEnabledRestfulClient(context);
+		mMessageConverter = new GsonMessageConverter();
+	}
 
-    public CachingEnabledRestfulMappingClient(InfinitumWebContext context, MessageConverter messageConverter) {
-        mRestClient = new CachingEnabledRestfulClient(context);
-        mMessageConverter = messageConverter;
-    }
+	public CachingEnabledRestfulMappingClient(InfinitumWebContext context, MessageConverter messageConverter) {
+		mRestClient = new CachingEnabledRestfulClient(context);
+		mMessageConverter = messageConverter;
+	}
 
-    @Override
-    public <T> T executeGet(String uri, Class<T> responseType) {
-        RestResponse response = mRestClient.executeGet(uri);
-        return mMessageConverter.convert(responseType, response);
-    }
+	@Override
+	public <T> T executeGet(String uri, Class<T> responseType) {
+		RestResponse response = mRestClient.executeGet(uri);
+		return mMessageConverter.convert(responseType, response);
+	}
 
-    @Override
-    public <T> T executeGet(String uri, Map<String, String> headers, Class<T> responseType) {
-        RestResponse response = mRestClient.executeGet(uri, headers);
-        return mMessageConverter.convert(responseType, response);
-    }
+	@Override
+	public <T> T executeGet(String uri, Map<String, String> headers, Class<T> responseType) {
+		RestResponse response = mRestClient.executeGet(uri, headers);
+		return mMessageConverter.convert(responseType, response);
+	}
 
-    @Override
-    public <T> T executePost(String uri, String messageBody, String contentType, Class<T> responseType) {
-        RestResponse response = mRestClient.executePost(uri, messageBody, contentType);
-        return mMessageConverter.convert(responseType, response);
-    }
+	@Override
+	public <T> T executePost(String uri, String messageBody, String contentType, Class<T> responseType) {
+		RestResponse response = mRestClient.executePost(uri, messageBody, contentType);
+		return mMessageConverter.convert(responseType, response);
+	}
 
-    @Override
-    public <T> T executePost(String uri, String messageBody, String contentType, Map<String, String> headers, Class<T> responseType) {
-        RestResponse response = mRestClient.executePost(uri, messageBody, contentType, headers);
-        return mMessageConverter.convert(responseType, response);
-    }
+	@Override
+	public <T> T executePost(String uri, String messageBody, String contentType, Map<String, String> headers, Class<T> responseType) {
+		RestResponse response = mRestClient.executePost(uri, messageBody, contentType, headers);
+		return mMessageConverter.convert(responseType, response);
+	}
 
-    @Override
-    public <T> T executePost(String uri, HttpEntity httpEntity, Class<T> responseType) {
-        RestResponse response = mRestClient.executePost(uri, httpEntity);
-        return mMessageConverter.convert(responseType, response);
-    }
+	@Override
+	public <T> T executePost(String uri, HttpEntity httpEntity, Class<T> responseType) {
+		RestResponse response = mRestClient.executePost(uri, httpEntity);
+		return mMessageConverter.convert(responseType, response);
+	}
 
-    @Override
-    public <T> T executePost(String uri, HttpEntity httpEntity, Map<String, String> headers, Class<T> responseType) {
-        RestResponse response = mRestClient.executePost(uri, httpEntity, headers);
-        return mMessageConverter.convert(responseType, response);
-    }
+	@Override
+	public <T> T executePost(String uri, HttpEntity httpEntity, Map<String, String> headers, Class<T> responseType) {
+		RestResponse response = mRestClient.executePost(uri, httpEntity, headers);
+		return mMessageConverter.convert(responseType, response);
+	}
 
-    @Override
-    public <T> T executePost(String uri, InputStream messageBody, int messageBodyLength, String contentType, Class<T> responseType) {
-        RestResponse response = mRestClient.executePost(uri, messageBody, messageBodyLength, contentType);
-        return mMessageConverter.convert(responseType, response);
-    }
+	@Override
+	public <T> T executePost(String uri, InputStream messageBody, int messageBodyLength, String contentType, Class<T> responseType) {
+		RestResponse response = mRestClient.executePost(uri, messageBody, messageBodyLength, contentType);
+		return mMessageConverter.convert(responseType, response);
+	}
 
-    @Override
-    public <T> T executePost(String uri, InputStream messageBody, int messageBodyLength, String contentType, Map<String, String> headers,
-                             Class<T> responseType) {
-        RestResponse response = mRestClient.executePost(uri, messageBody, messageBodyLength, contentType, headers);
-        return mMessageConverter.convert(responseType, response);
-    }
+	@Override
+	public <T> T executePost(String uri, InputStream messageBody, int messageBodyLength, String contentType, Map<String, String> headers,
+			Class<T> responseType) {
+		RestResponse response = mRestClient.executePost(uri, messageBody, messageBodyLength, contentType, headers);
+		return mMessageConverter.convert(responseType, response);
+	}
 
-    @Override
-    public RestResponse executeDelete(String uri) {
-        return mRestClient.executeDelete(uri);
-    }
+	@Override
+	public RestResponse executeDelete(String uri) {
+		return mRestClient.executeDelete(uri);
+	}
 
-    @Override
-    public RestResponse executeDelete(String uri, Map<String, String> headers) {
-        return mRestClient.executeDelete(uri, headers);
-    }
+	@Override
+	public RestResponse executeDelete(String uri, Map<String, String> headers) {
+		return mRestClient.executeDelete(uri, headers);
+	}
 
-    @Override
-    public RestResponse executePut(String uri, String messageBody, String contentType) {
-        return mRestClient.executePut(uri, messageBody, contentType);
-    }
+	@Override
+	public RestResponse executePut(String uri, String messageBody, String contentType) {
+		return mRestClient.executePut(uri, messageBody, contentType);
+	}
 
-    @Override
-    public RestResponse executePut(String uri, String messageBody, String contentType, Map<String, String> headers) {
-        return mRestClient.executePut(uri, messageBody, contentType, headers);
-    }
+	@Override
+	public RestResponse executePut(String uri, String messageBody, String contentType, Map<String, String> headers) {
+		return mRestClient.executePut(uri, messageBody, contentType, headers);
+	}
 
-    @Override
-    public RestResponse executePut(String uri, HttpEntity httpEntity) {
-        return mRestClient.executePut(uri, httpEntity);
-    }
+	@Override
+	public RestResponse executePut(String uri, HttpEntity httpEntity) {
+		return mRestClient.executePut(uri, httpEntity);
+	}
 
-    @Override
-    public RestResponse executePut(String uri, HttpEntity httpEntity, Map<String, String> headers) {
-        return mRestClient.executePut(uri, httpEntity, headers);
-    }
+	@Override
+	public RestResponse executePut(String uri, HttpEntity httpEntity, Map<String, String> headers) {
+		return mRestClient.executePut(uri, httpEntity, headers);
+	}
 
-    @Override
-    public RestResponse executePut(String uri, InputStream messageBody, int messageBodyLength, String contentType) {
-        return mRestClient.executePut(uri, messageBody, messageBodyLength, contentType);
-    }
+	@Override
+	public RestResponse executePut(String uri, InputStream messageBody, int messageBodyLength, String contentType) {
+		return mRestClient.executePut(uri, messageBody, messageBodyLength, contentType);
+	}
 
-    @Override
-    public RestResponse executePut(String uri, InputStream messageBody, int messageBodyLength, String contentType,
-                                   Map<String, String> headers) {
-        return mRestClient.executePut(uri, messageBody, messageBodyLength, contentType, headers);
-    }
+	@Override
+	public RestResponse executePut(String uri, InputStream messageBody, int messageBodyLength, String contentType,
+			Map<String, String> headers) {
+		return mRestClient.executePut(uri, messageBody, messageBodyLength, contentType, headers);
+	}
 
-    @Override
-    public RestResponse executeRequest(HttpUriRequest request) {
-        return mRestClient.executeRequest(request);
-    }
+	@Override
+	public RestResponse executeRequest(HttpUriRequest request) {
+		return mRestClient.executeRequest(request);
+	}
 
-    @Override
-    public <T> T executeRequest(HttpUriRequest request, Class<T> responseType) {
-        RestResponse response = mRestClient.executeRequest(request);
-        return mMessageConverter.convert(responseType, response);
-    }
+	@Override
+	public <T> T executeRequest(HttpUriRequest request, Class<T> responseType) {
+		RestResponse response = mRestClient.executeRequest(request);
+		return mMessageConverter.convert(responseType, response);
+	}
 
-    @Override
-    public void setConnectionTimeout(int timeout) {
-        mRestClient.setConnectionTimeout(timeout);
-    }
+	@Override
+	public void setConnectionTimeout(int timeout) {
+		mRestClient.setConnectionTimeout(timeout);
+	}
 
-    @Override
-    public void setResponseTimeout(int timeout) {
-        mRestClient.setResponseTimeout(timeout);
-    }
+	@Override
+	public void setResponseTimeout(int timeout) {
+		mRestClient.setResponseTimeout(timeout);
+	}
 
-    @Override
-    public void setHttpParams(HttpParams httpParams) {
-        mRestClient.setHttpParams(httpParams);
-    }
+	@Override
+	public void setHttpParams(HttpParams httpParams) {
+		mRestClient.setHttpParams(httpParams);
+	}
 
-    @Override
-    public void setAuthStrategy(AuthenticationStrategy authStrategy) {
-        mRestClient.setAuthStrategy(authStrategy);
-    }
+	@Override
+	public void setAuthStrategy(AuthenticationStrategy authStrategy) {
+		mRestClient.setAuthStrategy(authStrategy);
+	}
 
-    @Override
-    public void setMessageConverter(MessageConverter messageConverter) {
-        mMessageConverter = messageConverter;
-    }
+	@Override
+	public void setMessageConverter(MessageConverter messageConverter) {
+		mMessageConverter = messageConverter;
+	}
 
 }

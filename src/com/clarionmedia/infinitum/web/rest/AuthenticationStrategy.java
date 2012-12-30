@@ -28,19 +28,20 @@ import org.apache.http.impl.client.RequestWrapper;
  * token or shared-secret authentication, {@link SharedSecretAuthentication}
  * should be used.
  * </p>
- *
+ * 
  * @author Tyler Treat
  * @version 1.0 03/21/12
  * @since 1.0
  */
 public interface AuthenticationStrategy {
 
-    /**
-     * Adds the necessary authentication information to the given
-     * {@link RequestWrapper}.
-     *
-     * @param request the request to authenticate
-     */
-    void authenticate(RequestWrapper request);
+	/**
+	 * Adds the necessary authentication information to the given
+	 * {@link RequestWrapper}.
+	 * 
+	 * @param request
+	 *            the request to authenticate
+	 */
+	void authenticate(RequestWrapper request);
 
 }

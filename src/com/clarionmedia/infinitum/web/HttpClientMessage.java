@@ -27,33 +27,34 @@ import org.apache.http.HttpMessage;
  * <p>
  * Encapsulates an HTTP message, either a request or response.
  * </p>
- *
+ * 
  * @author Tyler Treat
  * @version 1.0 08/15/12
  * @since 1.0
  */
 public interface HttpClientMessage {
+	
+	/**
+	 * Returns the wrapped {@link HttpMessage}.
+	 * 
+	 * @return {@code HttpMessage}
+	 */
+	HttpMessage unwrap();
 
-    /**
-     * Returns the wrapped {@link HttpMessage}.
-     *
-     * @return {@code HttpMessage}
-     */
-    HttpMessage unwrap();
+	/**
+	 * Returns the headers that were included with the response.
+	 * 
+	 * @return {@link Map} containing headers
+	 */
+	Map<String, String> getHeaders();
 
-    /**
-     * Returns the headers that were included with the response.
-     *
-     * @return {@link Map} containing headers
-     */
-    Map<String, String> getHeaders();
-
-    /**
-     * Returns the value for the given header.
-     *
-     * @param header the header to retrieve
-     * @return header value
-     */
-    String getHeader(String header);
+	/**
+	 * Returns the value for the given header.
+	 * 
+	 * @param header
+	 *            the header to retrieve
+	 * @return header value
+	 */
+	String getHeader(String header);
 
 }

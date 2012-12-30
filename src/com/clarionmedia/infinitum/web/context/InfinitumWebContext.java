@@ -29,38 +29,40 @@ import com.clarionmedia.infinitum.web.rest.AuthenticationStrategy;
  * {@code InfinitumWebContext} is an extension of {@link InfinitumContext} that
  * contains configuration information for the framework web module.
  * </p>
- *
+ * 
  * @author Tyler Treat
  * @version 1.0 12/26/12
  * @since 1.0
  */
 public interface InfinitumWebContext extends InfinitumContext, BeanProvider {
+		
+	/**
+	 * Sets the {@link AuthenticationStrategy} for this
+	 * {@code RestfulConfiguration} based on one of the framework-defined
+	 * strategies, such as {@code token}.
+	 * 
+	 * @param strategy
+	 *            the framework-defined strategy to use
+	 * @throws InfinitumConfigurationException
+	 *             if the given strategy does not exist
+	 */
+	void setAuthStrategy(String strategy) throws InfinitumConfigurationException;
 
-    /**
-     * Sets the {@link AuthenticationStrategy} for this
-     * {@code RestfulConfiguration} based on one of the framework-defined
-     * strategies, such as {@code token}.
-     *
-     * @param strategy the framework-defined strategy to use
-     * @throws InfinitumConfigurationException
-     *          if the given strategy does not exist
-     */
-    void setAuthStrategy(String strategy) throws InfinitumConfigurationException;
+	/**
+	 * Sets the {@link AuthenticationStrategy} for this
+	 * {@code RestfulConfiguration}.
+	 * 
+	 * @param strategy
+	 *            the {@code AuthenticationStrategy} to use
+	 */
+	<T extends AuthenticationStrategy> void setAuthStrategy(T strategy);
 
-    /**
-     * Sets the {@link AuthenticationStrategy} for this
-     * {@code RestfulConfiguration}.
-     *
-     * @param strategy the {@code AuthenticationStrategy} to use
-     */
-    <T extends AuthenticationStrategy> void setAuthStrategy(T strategy);
-
-    /**
-     * Retrieves the configured {@link AuthenticationStrategy} for this
-     * {@code RestfulConfiguration}.
-     *
-     * @return the {@code AuthenticationStrategy}
-     */
-    AuthenticationStrategy getAuthStrategy();
+	/**
+	 * Retrieves the configured {@link AuthenticationStrategy} for this
+	 * {@code RestfulConfiguration}.
+	 * 
+	 * @return the {@code AuthenticationStrategy}
+	 */
+	AuthenticationStrategy getAuthStrategy();
 
 }

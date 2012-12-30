@@ -44,132 +44,134 @@ import com.clarionmedia.infinitum.web.rest.impl.SharedSecretAuthentication;
  * Implementation of {@link InfinitumWebContext} which is initialized through
  * XML as a child of an {@link XmlApplicationContext} instance.
  * </p>
- *
+ * 
  * @author Tyler Treat
  * @version 1.0 12/26/12
  * @since 1.0
+ * 
  */
 public class XmlInfinitumWebContext implements InfinitumWebContext {
 
-    private XmlApplicationContext mParentContext;
-    private List<InfinitumContext> mChildContexts;
+	private XmlApplicationContext mParentContext;
+	private List<InfinitumContext> mChildContexts;
 
-    /**
-     * Creates a new {@code XmlInfinitumWebContext} instance as a child of the
-     * given {@link XmlApplicationContext}.
-     *
-     * @param parentContext the parent of this context
-     */
-    public XmlInfinitumWebContext(XmlApplicationContext parentContext) {
-        mParentContext = parentContext;
-        mChildContexts = new ArrayList<InfinitumContext>();
-    }
+	/**
+	 * Creates a new {@code XmlInfinitumWebContext} instance as a child of the
+	 * given {@link XmlApplicationContext}.
+	 * 
+	 * @param parentContext
+	 *            the parent of this context
+	 */
+	public XmlInfinitumWebContext(XmlApplicationContext parentContext) {
+		mParentContext = parentContext;
+		mChildContexts = new ArrayList<InfinitumContext>();
+	}
 
-    @Override
-    public void postProcess(Context context) {
-    }
+	@Override
+	public void postProcess(Context context) {
+	}
 
-    @Override
-    public List<AbstractBeanDefinition> getBeans(BeanDefinitionBuilder beanDefinitionBuilder) {
-        List<AbstractBeanDefinition> beans = new ArrayList<AbstractBeanDefinition>();
-        beans.add(beanDefinitionBuilder.setName("$WebContext").setType(XmlInfinitumWebContext.class).build());
-        return beans;
-    }
+	@Override
+	public List<AbstractBeanDefinition> getBeans(BeanDefinitionBuilder beanDefinitionBuilder) {
+		List<AbstractBeanDefinition> beans = new ArrayList<AbstractBeanDefinition>();
+		beans.add(beanDefinitionBuilder.setName("$WebContext").setType(XmlInfinitumWebContext.class).build());
+		return beans;
+	}
 
-    @Override
-    public boolean isDebug() {
-        return mParentContext.isDebug();
-    }
+	@Override
+	public boolean isDebug() {
+		return mParentContext.isDebug();
+	}
 
-    @Override
-    public Context getAndroidContext() {
-        return mParentContext.getAndroidContext();
-    }
+	@Override
+	public Context getAndroidContext() {
+		return mParentContext.getAndroidContext();
+	}
 
-    @Override
-    public BeanFactory getBeanFactory() {
-        return mParentContext.getBeanFactory();
-    }
+	@Override
+	public BeanFactory getBeanFactory() {
+		return mParentContext.getBeanFactory();
+	}
 
-    @Override
-    public Object getBean(String name) {
-        return mParentContext.getBean(name);
-    }
+	@Override
+	public Object getBean(String name) {
+		return mParentContext.getBean(name);
+	}
 
-    @Override
-    public <T> T getBean(String name, Class<T> clazz) {
-        return mParentContext.getBean(name, clazz);
-    }
+	@Override
+	public <T> T getBean(String name, Class<T> clazz) {
+		return mParentContext.getBean(name, clazz);
+	}
 
-    @Override
-    public boolean isComponentScanEnabled() {
-        return mParentContext.isComponentScanEnabled();
-    }
+	@Override
+	public boolean isComponentScanEnabled() {
+		return mParentContext.isComponentScanEnabled();
+	}
 
-    @Override
-    public List<InfinitumContext> getChildContexts() {
-        return mChildContexts;
-    }
+	@Override
+	public List<InfinitumContext> getChildContexts() {
+		return mChildContexts;
+	}
 
-    @Override
-    public void addChildContext(InfinitumContext context) {
-        mChildContexts.add(context);
-    }
+	@Override
+	public void addChildContext(InfinitumContext context) {
+		mChildContexts.add(context);
+	}
 
-    @Override
-    public InfinitumContext getParentContext() {
-        return mParentContext.getParentContext();
-    }
+	@Override
+	public InfinitumContext getParentContext() {
+		return mParentContext.getParentContext();
+	}
 
-    @Override
-    public RestfulContext getRestContext() {
-        return mParentContext.getRestContext();
-    }
+	@Override
+	public RestfulContext getRestContext() {
+		return mParentContext.getRestContext();
+	}
 
-    @Override
-    public void setAuthStrategy(String strategy) throws InfinitumConfigurationException {
-        XmlRestfulContext restContext = mParentContext.getRestContext();
-        Authentication auth = restContext.getAuthentication();
-        if (auth == null)
-            auth = new Authentication();
-        if ("token".equalsIgnoreCase(strategy))
-            auth.setStrategy("token");
-        else
-            throw new InfinitumConfigurationException("Unrecognized authentication strategy '" + strategy + "'.");
-    }
+	@Override
+	public void setAuthStrategy(String strategy) throws InfinitumConfigurationException {
+		XmlRestfulContext restContext = mParentContext.getRestContext();
+		Authentication auth = restContext.getAuthentication();
+		if (auth == null)
+			auth = new Authentication();
+		if ("token".equalsIgnoreCase(strategy))
+			auth.setStrategy("token");
+		else
+			throw new InfinitumConfigurationException("Unrecognized authentication strategy '" + strategy + "'.");
+	}
 
-    @Override
-    public AuthenticationStrategy getAuthStrategy() {
-        XmlRestfulContext restContext = mParentContext.getRestContext();
-        Authentication auth = restContext.getAuthentication();
-        if (auth == null)
-            return null;
-        if (auth.getAuthBean() != null) {
-            return mParentContext.getBean(auth.getAuthBean(), AuthenticationStrategy.class);
-        }
-        String strategy = auth.getStrategy();
-        if ("token".equalsIgnoreCase(strategy)) {
-            SharedSecretAuthentication strat = new SharedSecretAuthentication();
-            strat.setHeader(auth.isHeader());
-            Map<String, String> props = auth.getAuthProperties();
-            if (props.containsKey("tokenName"))
-                strat.setTokenName(props.get("tokenName"));
-            if (props.containsKey("token"))
-                strat.setToken(props.get("token"));
-            if (auth.getGenerator() != null)
-                strat.setTokenGenerator(mParentContext.getBean(auth.getGenerator(), TokenGenerator.class));
-            return strat;
-        } else
-            throw new InfinitumConfigurationException("Unrecognized authentication strategy '" + strategy + "'.");
-    }
+	@Override
+	public AuthenticationStrategy getAuthStrategy() {
+		XmlRestfulContext restContext = mParentContext.getRestContext();
+		Authentication auth = restContext.getAuthentication();
+		if (auth == null)
+			return null;
+		if (auth.getAuthBean() != null) {
+			return mParentContext.getBean(auth.getAuthBean(), AuthenticationStrategy.class);
+		}
+		String strategy = auth.getStrategy();
+		if ("token".equalsIgnoreCase(strategy)) {
+			SharedSecretAuthentication strat = new SharedSecretAuthentication();
+			strat.setHeader(auth.isHeader());
+			Map<String, String> props = auth.getAuthProperties();
+			if (props.containsKey("tokenName"))
+				strat.setTokenName(props.get("tokenName"));
+			if (props.containsKey("token"))
+				strat.setToken(props.get("token"));
+			if (auth.getGenerator() != null)
+				strat.setTokenGenerator(mParentContext.getBean(auth.getGenerator(), TokenGenerator.class));
+			return strat;
+		} else
+			throw new InfinitumConfigurationException("Unrecognized authentication strategy '" + strategy + "'.");
+	}
 
-    @Override
-    public <T extends AuthenticationStrategy> void setAuthStrategy(T strategy) {
-        XmlRestfulContext restContext = mParentContext.getRestContext();
-        Authentication auth = restContext.getAuthentication();
-        if (auth == null)
-            auth = new Authentication();
-        setAuthStrategy(strategy.getClass().getSimpleName());
-    }
+	@Override
+	public <T extends AuthenticationStrategy> void setAuthStrategy(T strategy) {
+		XmlRestfulContext restContext = mParentContext.getRestContext();
+		Authentication auth = restContext.getAuthentication();
+		if (auth == null)
+			auth = new Authentication();
+		setAuthStrategy(strategy.getClass().getSimpleName());
+	}
 
 }
