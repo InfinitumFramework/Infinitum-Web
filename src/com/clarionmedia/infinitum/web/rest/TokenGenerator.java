@@ -26,18 +26,18 @@ package com.clarionmedia.infinitum.web.rest;
  * undesirable. A {@code TokenGenerator} can be injected into a
  * {@link SharedSecretAuthentication} bean.
  * </p>
- * 
+ *
  * @author Tyler Treat
  * @version 1.0 03/21/12
  * @since 1.0
  */
 public interface TokenGenerator {
 
-	/**
-	 * Creates a new shared secret token.
-	 * 
-	 * @return authentication token
-	 */
-	String generateToken();
+    /**
+     * Creates a new shared secret token.
+     *
+     * @return authentication token
+     */
+    String generateToken();
 
 }

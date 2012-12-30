@@ -33,317 +33,249 @@ import com.clarionmedia.infinitum.web.rest.impl.RestResponse;
  * Provides an interface for communicating with a RESTful web service. Responses
  * are converted using a {@link MessageConverter} and returned as objects.
  * </p>
- * 
+ *
  * @author Tyler Treat
  * @version 1.0 07/06/12
  * @since 1.0
  */
 public interface RestfulMappingClient {
 
-	/**
-	 * Executes an HTTP GET request to the given URI.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param responseType
-	 *            the type of the object to return
-	 * @return HTTP response
-	 */
-	<T> T executeGet(String uri, Class<T> responseType);
+    /**
+     * Executes an HTTP GET request to the given URI.
+     *
+     * @param uri          the URI to execute the request for
+     * @param responseType the type of the object to return
+     * @return HTTP response
+     */
+    <T> T executeGet(String uri, Class<T> responseType);
 
-	/**
-	 * Executes an HTTP GET request to the given URI
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param headers
-	 *            the headers to send with the request
-	 * @param responseType
-	 *            the type of the object to return
-	 * @return HTTP response
-	 */
-	<T> T executeGet(String uri, Map<String, String> headers, Class<T> responseType);
+    /**
+     * Executes an HTTP GET request to the given URI
+     *
+     * @param uri          the URI to execute the request for
+     * @param headers      the headers to send with the request
+     * @param responseType the type of the object to return
+     * @return HTTP response
+     */
+    <T> T executeGet(String uri, Map<String, String> headers, Class<T> responseType);
 
-	/**
-	 * Executes an HTTP POST request to the given URI using the given content
-	 * type and message body.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param messageBody
-	 *            the message body
-	 * @param contentType
-	 *            the content type of the message body
-	 * @param responseType
-	 *            the type of the object to return
-	 * @return HTTP response
-	 */
-	<T> T executePost(String uri, String messageBody, String contentType, Class<T> responseType);
+    /**
+     * Executes an HTTP POST request to the given URI using the given content
+     * type and message body.
+     *
+     * @param uri          the URI to execute the request for
+     * @param messageBody  the message body
+     * @param contentType  the content type of the message body
+     * @param responseType the type of the object to return
+     * @return HTTP response
+     */
+    <T> T executePost(String uri, String messageBody, String contentType, Class<T> responseType);
 
-	/**
-	 * Executes an HTTP POST request to the given URI using the given content
-	 * type, message body, and headers.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param messageBody
-	 *            the message body
-	 * @param contentType
-	 *            the content type of the message body
-	 * @param headers
-	 *            the headers to send with the request
-	 * @param responseType
-	 *            the type of the object to return
-	 * 
-	 * @return HTTP response
-	 */
-	<T> T executePost(String uri, String messageBody, String contentType, Map<String, String> headers, Class<T> responseType);
+    /**
+     * Executes an HTTP POST request to the given URI using the given content
+     * type, message body, and headers.
+     *
+     * @param uri          the URI to execute the request for
+     * @param messageBody  the message body
+     * @param contentType  the content type of the message body
+     * @param headers      the headers to send with the request
+     * @param responseType the type of the object to return
+     * @return HTTP response
+     */
+    <T> T executePost(String uri, String messageBody, String contentType, Map<String, String> headers, Class<T> responseType);
 
-	/**
-	 * Executes an HTTP POST request to the given URI using the given
-	 * {@link HttpEntity}.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param httpEntity
-	 *            the {@code HttpEntity}
-	 * @param responseType
-	 *            the type of the object to return
-	 * @return HTTP response
-	 */
-	<T> T executePost(String uri, HttpEntity httpEntity, Class<T> responseType);
+    /**
+     * Executes an HTTP POST request to the given URI using the given
+     * {@link HttpEntity}.
+     *
+     * @param uri          the URI to execute the request for
+     * @param httpEntity   the {@code HttpEntity}
+     * @param responseType the type of the object to return
+     * @return HTTP response
+     */
+    <T> T executePost(String uri, HttpEntity httpEntity, Class<T> responseType);
 
-	/**
-	 * Executes an HTTP POST request to the given URI using the given
-	 * {@link HttpEntity} and headers.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param httpEntity
-	 *            the {@code HttpEntity}
-	 * @param headers
-	 *            the headers to send with the request
-	 * @param responseType
-	 *            the type of the object to return
-	 * 
-	 * @return HTTP response
-	 */
-	<T> T executePost(String uri, HttpEntity httpEntity, Map<String, String> headers, Class<T> responseType);
+    /**
+     * Executes an HTTP POST request to the given URI using the given
+     * {@link HttpEntity} and headers.
+     *
+     * @param uri          the URI to execute the request for
+     * @param httpEntity   the {@code HttpEntity}
+     * @param headers      the headers to send with the request
+     * @param responseType the type of the object to return
+     * @return HTTP response
+     */
+    <T> T executePost(String uri, HttpEntity httpEntity, Map<String, String> headers, Class<T> responseType);
 
-	/**
-	 * Executes an HTTP POST request to the given URI using the given content
-	 * type and message body.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param messageBody
-	 *            the message body
-	 * @param messageBodyLength
-	 *            the length of the message body
-	 * @param contentType
-	 *            the content type of the message body
-	 * @param responseType
-	 *            the type of the object to return
-	 * @return HTTP response
-	 */
-	<T> T executePost(String uri, InputStream messageBody, int messageBodyLength, String contentType, Class<T> responseType);
+    /**
+     * Executes an HTTP POST request to the given URI using the given content
+     * type and message body.
+     *
+     * @param uri               the URI to execute the request for
+     * @param messageBody       the message body
+     * @param messageBodyLength the length of the message body
+     * @param contentType       the content type of the message body
+     * @param responseType      the type of the object to return
+     * @return HTTP response
+     */
+    <T> T executePost(String uri, InputStream messageBody, int messageBodyLength, String contentType, Class<T> responseType);
 
-	/**
-	 * Executes an HTTP POST request to the given URI using the given content
-	 * type, message body, and headers.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param messageBody
-	 *            the message body
-	 * @param messageBodyLength
-	 *            the length of the message body
-	 * @param contentType
-	 *            the content type of the message body
-	 * @param headers
-	 *            the headers to send with the request
-	 * @param responseType
-	 *            the type of the object to return
-	 * @return HTTP response
-	 */
-	<T> T executePost(String uri, InputStream messageBody, int messageBodyLength, String contentType, Map<String, String> headers,
-			Class<T> responseType);
+    /**
+     * Executes an HTTP POST request to the given URI using the given content
+     * type, message body, and headers.
+     *
+     * @param uri               the URI to execute the request for
+     * @param messageBody       the message body
+     * @param messageBodyLength the length of the message body
+     * @param contentType       the content type of the message body
+     * @param headers           the headers to send with the request
+     * @param responseType      the type of the object to return
+     * @return HTTP response
+     */
+    <T> T executePost(String uri, InputStream messageBody, int messageBodyLength, String contentType, Map<String, String> headers,
+                      Class<T> responseType);
 
-	/**
-	 * Executes an HTTP DELETE request to the given URI.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @return HTTP response
-	 */
-	RestResponse executeDelete(String uri);
+    /**
+     * Executes an HTTP DELETE request to the given URI.
+     *
+     * @param uri the URI to execute the request for
+     * @return HTTP response
+     */
+    RestResponse executeDelete(String uri);
 
-	/**
-	 * Executes an HTTP DELETE request to the given URI using the given headers.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param headers
-	 *            the headers to send with the request
-	 * @return HTTP response
-	 */
-	RestResponse executeDelete(String uri, Map<String, String> headers);
+    /**
+     * Executes an HTTP DELETE request to the given URI using the given headers.
+     *
+     * @param uri     the URI to execute the request for
+     * @param headers the headers to send with the request
+     * @return HTTP response
+     */
+    RestResponse executeDelete(String uri, Map<String, String> headers);
 
-	/**
-	 * Executes an HTTP PUT request to the given URI using the given content
-	 * type and message body.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param messageBody
-	 *            the message body
-	 * @param contentType
-	 *            the content type of the message body
-	 * @return HTTP response
-	 */
-	RestResponse executePut(String uri, String messageBody, String contentType);
+    /**
+     * Executes an HTTP PUT request to the given URI using the given content
+     * type and message body.
+     *
+     * @param uri         the URI to execute the request for
+     * @param messageBody the message body
+     * @param contentType the content type of the message body
+     * @return HTTP response
+     */
+    RestResponse executePut(String uri, String messageBody, String contentType);
 
-	/**
-	 * Executes an HTTP PUT request to the given URI using the given content
-	 * type, message body, and headers.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param messageBody
-	 *            the message body
-	 * @param contentType
-	 *            the content type of the message body
-	 * @param headers
-	 *            the headers to send with the request
-	 * 
-	 * @return HTTP response
-	 */
-	RestResponse executePut(String uri, String messageBody, String contentType, Map<String, String> headers);
+    /**
+     * Executes an HTTP PUT request to the given URI using the given content
+     * type, message body, and headers.
+     *
+     * @param uri         the URI to execute the request for
+     * @param messageBody the message body
+     * @param contentType the content type of the message body
+     * @param headers     the headers to send with the request
+     * @return HTTP response
+     */
+    RestResponse executePut(String uri, String messageBody, String contentType, Map<String, String> headers);
 
-	/**
-	 * Executes an HTTP PUT request to the given URI using the given
-	 * {@link HttpEntity}.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param httpEntity
-	 *            the {@code HttpEntity}
-	 * @return HTTP response
-	 */
-	RestResponse executePut(String uri, HttpEntity httpEntity);
+    /**
+     * Executes an HTTP PUT request to the given URI using the given
+     * {@link HttpEntity}.
+     *
+     * @param uri        the URI to execute the request for
+     * @param httpEntity the {@code HttpEntity}
+     * @return HTTP response
+     */
+    RestResponse executePut(String uri, HttpEntity httpEntity);
 
-	/**
-	 * Executes an HTTP PUT request to the given URI using the given
-	 * {@link HttpEntity} and headers.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param httpEntity
-	 *            the {@code HttpEntity}
-	 * @param headers
-	 *            the headers to send with the request
-	 * 
-	 * @return HTTP response
-	 */
-	RestResponse executePut(String uri, HttpEntity httpEntity, Map<String, String> headers);
+    /**
+     * Executes an HTTP PUT request to the given URI using the given
+     * {@link HttpEntity} and headers.
+     *
+     * @param uri        the URI to execute the request for
+     * @param httpEntity the {@code HttpEntity}
+     * @param headers    the headers to send with the request
+     * @return HTTP response
+     */
+    RestResponse executePut(String uri, HttpEntity httpEntity, Map<String, String> headers);
 
-	/**
-	 * Executes an HTTP PUT request to the given URI using the given content
-	 * type and message body.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param messageBody
-	 *            the message body
-	 * @param messageBodyLength
-	 *            the length of the message body
-	 * @param contentType
-	 *            the content type of the message body
-	 * @return HTTP response
-	 */
-	RestResponse executePut(String uri, InputStream messageBody, int messageBodyLength, String contentType);
+    /**
+     * Executes an HTTP PUT request to the given URI using the given content
+     * type and message body.
+     *
+     * @param uri               the URI to execute the request for
+     * @param messageBody       the message body
+     * @param messageBodyLength the length of the message body
+     * @param contentType       the content type of the message body
+     * @return HTTP response
+     */
+    RestResponse executePut(String uri, InputStream messageBody, int messageBodyLength, String contentType);
 
-	/**
-	 * Executes an HTTP PUT request to the given URI using the given content
-	 * type, message body, and headers.
-	 * 
-	 * @param uri
-	 *            the URI to execute the request for
-	 * @param messageBody
-	 *            the message body
-	 * @param messageBodyLength
-	 *            the length of the message body
-	 * @param contentType
-	 *            the content type of the message body
-	 * @param headers
-	 *            the headers to send with the request
-	 * @return HTTP response
-	 */
-	RestResponse executePut(String uri, InputStream messageBody, int messageBodyLength, String contentType, Map<String, String> headers);
+    /**
+     * Executes an HTTP PUT request to the given URI using the given content
+     * type, message body, and headers.
+     *
+     * @param uri               the URI to execute the request for
+     * @param messageBody       the message body
+     * @param messageBodyLength the length of the message body
+     * @param contentType       the content type of the message body
+     * @param headers           the headers to send with the request
+     * @return HTTP response
+     */
+    RestResponse executePut(String uri, InputStream messageBody, int messageBodyLength, String contentType, Map<String, String> headers);
 
-	/**
-	 * Executes the given {@link HttpUriRequest}.
-	 * 
-	 * @param request
-	 *            the request to execute
-	 * @return HTTP response
-	 */
-	RestResponse executeRequest(HttpUriRequest request);
+    /**
+     * Executes the given {@link HttpUriRequest}.
+     *
+     * @param request the request to execute
+     * @return HTTP response
+     */
+    RestResponse executeRequest(HttpUriRequest request);
 
-	/**
-	 * Executes the given {@link HttpUriRequest}.
-	 * 
-	 * @param request
-	 *            the request to execute
-	 * @param responseType
-	 *            the type of the object to return
-	 * @return HTTP response
-	 */
-	<T> T executeRequest(HttpUriRequest request, Class<T> responseType);
+    /**
+     * Executes the given {@link HttpUriRequest}.
+     *
+     * @param request      the request to execute
+     * @param responseType the type of the object to return
+     * @return HTTP response
+     */
+    <T> T executeRequest(HttpUriRequest request, Class<T> responseType);
 
-	/**
-	 * Sets the connection timeout in milliseconds. This is the timeout used
-	 * until a connection is established with the web service.
-	 * 
-	 * @param timeout
-	 *            the timeout to set in milliseconds
-	 */
-	void setConnectionTimeout(int timeout);
+    /**
+     * Sets the connection timeout in milliseconds. This is the timeout used
+     * until a connection is established with the web service.
+     *
+     * @param timeout the timeout to set in milliseconds
+     */
+    void setConnectionTimeout(int timeout);
 
-	/**
-	 * Sets the response timeout in milliseconds. This is the timeout for
-	 * waiting for data from the web service. A timeout of zero is interpreted
-	 * as an infinite timeout.
-	 * 
-	 * @param timeout
-	 *            the timeout to set in milliseconds
-	 */
-	void setResponseTimeout(int timeout);
+    /**
+     * Sets the response timeout in milliseconds. This is the timeout for
+     * waiting for data from the web service. A timeout of zero is interpreted
+     * as an infinite timeout.
+     *
+     * @param timeout the timeout to set in milliseconds
+     */
+    void setResponseTimeout(int timeout);
 
-	/**
-	 * Sets the {@link HttpParams} for this {@code RestfulClient}.
-	 * 
-	 * @param httpParams
-	 *            the {@code HttpParams} to set
-	 */
-	void setHttpParams(HttpParams httpParams);
+    /**
+     * Sets the {@link HttpParams} for this {@code RestfulClient}.
+     *
+     * @param httpParams the {@code HttpParams} to set
+     */
+    void setHttpParams(HttpParams httpParams);
 
-	/**
-	 * Sets the {@link AuthenticationStrategy} to use for requests.
-	 * 
-	 * @param authStrategy
-	 *            the {@code AuthenticationStrategy} to use or {@code null} if
-	 *            there should be none
-	 */
-	void setAuthStrategy(AuthenticationStrategy authStrategy);
+    /**
+     * Sets the {@link AuthenticationStrategy} to use for requests.
+     *
+     * @param authStrategy the {@code AuthenticationStrategy} to use or {@code null} if
+     *                     there should be none
+     */
+    void setAuthStrategy(AuthenticationStrategy authStrategy);
 
-	/**
-	 * Sets the {@link MessageConverter} to use. The {@code MessageConverter} is
-	 * responsible for converting web service responses to objects.
-	 * 
-	 * @param messageConverter
-	 *            the {@code MessageConverter} to set
-	 */
-	void setMessageConverter(MessageConverter messageConverter);
+    /**
+     * Sets the {@link MessageConverter} to use. The {@code MessageConverter} is
+     * responsible for converting web service responses to objects.
+     *
+     * @param messageConverter the {@code MessageConverter} to set
+     */
+    void setMessageConverter(MessageConverter messageConverter);
 
 }

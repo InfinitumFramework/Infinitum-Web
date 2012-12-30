@@ -27,26 +27,26 @@ import com.google.gson.Gson;
  * Implementation of {@link MessageConverter} which relies on Gson to perform
  * object conversions.
  * </p>
- * 
+ *
  * @author Tyler Treat
  * @version 1.0 12/23/12
  * @since 1.0
  */
 public class GsonMessageConverter implements MessageConverter {
 
-	private Gson mGson;
+    private Gson mGson;
 
-	public GsonMessageConverter() {
-		mGson = new Gson();
-	}
+    public GsonMessageConverter() {
+        mGson = new Gson();
+    }
 
-	public GsonMessageConverter(Gson gson) {
-		mGson = gson;
-	}
+    public GsonMessageConverter(Gson gson) {
+        mGson = gson;
+    }
 
-	@Override
-	public <T> T convert(Class<T> clazz, RestResponse response) {
-		return mGson.fromJson(response.getResponseDataAsString(), clazz);
-	}
+    @Override
+    public <T> T convert(Class<T> clazz, RestResponse response) {
+        return mGson.fromJson(response.getResponseDataAsString(), clazz);
+    }
 
 }
