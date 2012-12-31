@@ -19,9 +19,9 @@
 
 package com.clarionmedia.infinitum.web.context;
 
-import com.clarionmedia.infinitum.context.BeanProvider;
 import com.clarionmedia.infinitum.context.InfinitumContext;
 import com.clarionmedia.infinitum.context.exception.InfinitumConfigurationException;
+import com.clarionmedia.infinitum.di.BeanProvider;
 import com.clarionmedia.infinitum.web.rest.AuthenticationStrategy;
 
 /**
