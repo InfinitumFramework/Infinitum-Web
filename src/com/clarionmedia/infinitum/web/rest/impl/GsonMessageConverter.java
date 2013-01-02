@@ -33,10 +33,20 @@ public class GsonMessageConverter implements MessageConverter {
 
 	private Gson mGson;
 
+	/**
+	 * Creates a new {@code GsonMessageConverter} instance.
+	 */
 	public GsonMessageConverter() {
 		mGson = new Gson();
 	}
 
+	/**
+	 * Creates a new {@code GsonMessageConverter} instance with the given
+	 * {@code Gson}.
+	 * 
+	 * @param gson
+	 *            the {@code Gson} instance to use for conversion
+	 */
 	public GsonMessageConverter(Gson gson) {
 		mGson = gson;
 	}
