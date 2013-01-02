@@ -23,7 +23,6 @@ import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.params.HttpParams;
 
-import com.clarionmedia.infinitum.web.context.InfinitumWebContext;
 import com.clarionmedia.infinitum.web.rest.AuthenticationStrategy;
 import com.clarionmedia.infinitum.web.rest.MessageConverter;
 import com.clarionmedia.infinitum.web.rest.RestfulMappingClient;
@@ -50,13 +49,13 @@ public class CachingEnabledRestfulMappingClient implements RestfulMappingClient 
 	private CachingEnabledRestfulClient mRestClient;
 	private MessageConverter mMessageConverter;
 
-	public CachingEnabledRestfulMappingClient(InfinitumWebContext context) {
-		mRestClient = new CachingEnabledRestfulClient(context);
+	public CachingEnabledRestfulMappingClient() {
+		mRestClient = new CachingEnabledRestfulClient();
 		mMessageConverter = new GsonMessageConverter();
 	}
 
-	public CachingEnabledRestfulMappingClient(InfinitumWebContext context, MessageConverter messageConverter) {
-		mRestClient = new CachingEnabledRestfulClient(context);
+	public CachingEnabledRestfulMappingClient(MessageConverter messageConverter) {
+		mRestClient = new CachingEnabledRestfulClient();
 		mMessageConverter = messageConverter;
 	}
 
