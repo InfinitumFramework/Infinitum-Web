@@ -71,7 +71,8 @@ public class XmlInfinitumWebContext implements InfinitumWebContext {
 	@Override
 	public List<AbstractBeanDefinition> getBeans(BeanDefinitionBuilder beanDefinitionBuilder) {
 		List<AbstractBeanDefinition> beans = new ArrayList<AbstractBeanDefinition>();
-		beans.add(beanDefinitionBuilder.setName("$WebContext").setType(XmlInfinitumWebContext.class).build());
+		beans.add(beanDefinitionBuilder.setName("_" + XmlInfinitumWebContext.class.getSimpleName()).setType(XmlInfinitumWebContext.class)
+				.build());
 		return beans;
 	}
 
@@ -119,7 +120,7 @@ public class XmlInfinitumWebContext implements InfinitumWebContext {
 	public InfinitumContext getParentContext() {
 		return mParentContext.getParentContext();
 	}
-	
+
 	@Override
 	public <T extends InfinitumContext> T getChildContext(Class<T> contextType) {
 		return mParentContext.getChildContext(contextType);
