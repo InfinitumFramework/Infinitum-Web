@@ -22,6 +22,8 @@ import java.util.Map;
 
 import android.content.Context;
 
+import com.clarionmedia.infinitum.activity.EventSubscriber;
+import com.clarionmedia.infinitum.activity.LifecycleEvent;
 import com.clarionmedia.infinitum.context.InfinitumContext;
 import com.clarionmedia.infinitum.context.RestfulContext;
 import com.clarionmedia.infinitum.context.exception.InfinitumConfigurationException;
@@ -175,6 +177,16 @@ public class XmlInfinitumWebContext implements InfinitumWebContext {
 		if (auth == null)
 			auth = new Authentication();
 		setAuthStrategy(strategy.getClass().getSimpleName());
+	}
+
+	@Override
+	public void publishEvent(LifecycleEvent event) {
+		mParentContext.publishEvent(event);
+	}
+	
+	@Override
+	public void subscribeForEvents(EventSubscriber subscriber) {
+		mParentContext.subscribeForEvents(subscriber);
 	}
 
 }
