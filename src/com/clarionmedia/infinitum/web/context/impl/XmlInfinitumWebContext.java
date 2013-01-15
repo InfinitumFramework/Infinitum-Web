@@ -22,7 +22,6 @@ import java.util.Map;
 
 import android.content.Context;
 
-import com.clarionmedia.infinitum.activity.EventSubscriber;
 import com.clarionmedia.infinitum.activity.LifecycleEvent;
 import com.clarionmedia.infinitum.context.InfinitumContext;
 import com.clarionmedia.infinitum.context.RestfulContext;
@@ -33,6 +32,7 @@ import com.clarionmedia.infinitum.context.impl.XmlRestfulContext.Authentication;
 import com.clarionmedia.infinitum.di.AbstractBeanDefinition;
 import com.clarionmedia.infinitum.di.BeanDefinitionBuilder;
 import com.clarionmedia.infinitum.di.BeanFactory;
+import com.clarionmedia.infinitum.event.EventSubscriber;
 import com.clarionmedia.infinitum.web.context.InfinitumWebContext;
 import com.clarionmedia.infinitum.web.rest.AuthenticationStrategy;
 import com.clarionmedia.infinitum.web.rest.TokenGenerator;
