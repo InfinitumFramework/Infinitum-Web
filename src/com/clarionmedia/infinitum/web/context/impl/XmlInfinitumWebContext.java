@@ -31,6 +31,8 @@ import com.clarionmedia.infinitum.context.impl.XmlRestfulContext.Authentication;
 import com.clarionmedia.infinitum.di.AbstractBeanDefinition;
 import com.clarionmedia.infinitum.di.BeanDefinitionBuilder;
 import com.clarionmedia.infinitum.di.BeanFactory;
+import com.clarionmedia.infinitum.event.AbstractEvent;
+import com.clarionmedia.infinitum.event.EventSubscriber;
 import com.clarionmedia.infinitum.web.context.InfinitumWebContext;
 import com.clarionmedia.infinitum.web.rest.AuthenticationStrategy;
 import com.clarionmedia.infinitum.web.rest.TokenGenerator;
@@ -175,6 +177,16 @@ public class XmlInfinitumWebContext implements InfinitumWebContext {
 		if (auth == null)
 			auth = new Authentication();
 		setAuthStrategy(strategy.getClass().getSimpleName());
+	}
+
+	@Override
+	public void publishEvent(AbstractEvent event) {
+		mParentContext.publishEvent(event);
+	}
+	
+	@Override
+	public void subscribeForEvents(EventSubscriber subscriber) {
+		mParentContext.subscribeForEvents(subscriber);
 	}
 
 }
