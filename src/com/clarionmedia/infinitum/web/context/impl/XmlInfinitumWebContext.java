@@ -22,7 +22,6 @@ import java.util.Map;
 
 import android.content.Context;
 
-import com.clarionmedia.infinitum.activity.LifecycleEvent;
 import com.clarionmedia.infinitum.context.InfinitumContext;
 import com.clarionmedia.infinitum.context.RestfulContext;
 import com.clarionmedia.infinitum.context.exception.InfinitumConfigurationException;
@@ -32,6 +31,7 @@ import com.clarionmedia.infinitum.context.impl.XmlRestfulContext.Authentication;
 import com.clarionmedia.infinitum.di.AbstractBeanDefinition;
 import com.clarionmedia.infinitum.di.BeanDefinitionBuilder;
 import com.clarionmedia.infinitum.di.BeanFactory;
+import com.clarionmedia.infinitum.event.AbstractEvent;
 import com.clarionmedia.infinitum.event.EventSubscriber;
 import com.clarionmedia.infinitum.web.context.InfinitumWebContext;
 import com.clarionmedia.infinitum.web.rest.AuthenticationStrategy;
@@ -180,7 +180,7 @@ public class XmlInfinitumWebContext implements InfinitumWebContext {
 	}
 
 	@Override
-	public void publishEvent(LifecycleEvent event) {
+	public void publishEvent(AbstractEvent event) {
 		mParentContext.publishEvent(event);
 	}
 	
