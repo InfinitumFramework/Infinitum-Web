@@ -4,7 +4,7 @@
 	<artifactId>infinitum-web</artifactId>
 	<packaging>jar</packaging>
 	<name>Infinitum Web</name>
-	<version>1.0.3</version>
+	<version>1.0.4-SNAPSHOT</version>
 	<description>Infinitum Web framework module</description>
 	<url>http://infinitumframework.com</url>
 
