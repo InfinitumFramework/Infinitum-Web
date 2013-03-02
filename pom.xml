@@ -75,11 +75,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.simpleframework</groupId>
-			<artifactId>simple-xml</artifactId>
-			<version>${simplexml.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>${gson.version}</version>
