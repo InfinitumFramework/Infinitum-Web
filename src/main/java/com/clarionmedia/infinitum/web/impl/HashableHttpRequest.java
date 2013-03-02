@@ -16,16 +16,14 @@
 
 package com.clarionmedia.infinitum.web.impl;
 
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.clarionmedia.infinitum.web.HttpClientRequest;
 import org.apache.http.Header;
-import org.apache.http.ProtocolException;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.RequestWrapper;
 
-import com.clarionmedia.infinitum.web.HttpClientRequest;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -47,9 +45,8 @@ public class HashableHttpRequest implements HttpClientRequest {
 	 * 
 	 * @param request
 	 *            the {@code RequestWrapper} to wrap
-	 * @throws ProtocolException 
 	 */
-	public HashableHttpRequest(RequestWrapper request) throws ProtocolException {
+	public HashableHttpRequest(RequestWrapper request) {
 		request.resetHeaders();
 		mHttpRequest = request;
 	}
