@@ -75,17 +75,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.infinitumframework</groupId>
-			<artifactId>infinitum-core</artifactId>
-			<version>${infinitum.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.android</groupId>
-			<artifactId>android</artifactId>
-			<version>${android.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.simpleframework</groupId>
 			<artifactId>simple-xml</artifactId>
 			<version>${simplexml.version}</version>
@@ -129,6 +118,17 @@
 			<version>${robolectric.version}</version>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>com.infinitumframework</groupId>
+            <artifactId>infinitum-core</artifactId>
+            <version>${infinitum.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>${android.version}</version>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
