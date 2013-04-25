@@ -16,26 +16,22 @@
 
 package com.clarionmedia.infinitum.web.rest.impl;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
-
+import android.content.Context;
+import com.clarionmedia.infinitum.exception.InfinitumRuntimeException;
+import com.clarionmedia.infinitum.internal.DateFormatter;
+import com.clarionmedia.infinitum.internal.caching.AbstractCache;
+import com.clarionmedia.infinitum.logging.Logger;
+import com.clarionmedia.infinitum.logging.impl.SmartLogger;
+import com.clarionmedia.infinitum.web.impl.HashableHttpRequest;
+import com.clarionmedia.infinitum.web.rest.AuthenticationStrategy;
+import com.clarionmedia.infinitum.web.rest.RestfulClient;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.ProtocolException;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.*;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -44,15 +40,14 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
-import android.content.Context;
-
-import com.clarionmedia.infinitum.exception.InfinitumRuntimeException;
-import com.clarionmedia.infinitum.internal.DateFormatter;
-import com.clarionmedia.infinitum.internal.caching.AbstractCache;
-import com.clarionmedia.infinitum.logging.Logger;
-import com.clarionmedia.infinitum.web.impl.HashableHttpRequest;
-import com.clarionmedia.infinitum.web.rest.AuthenticationStrategy;
-import com.clarionmedia.infinitum.web.rest.RestfulClient;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * <p>
@@ -75,7 +70,7 @@ public class CachingEnabledRestfulClient implements RestfulClient {
 	 * Creates a new {@code CachingEnabledRestfulClient}.
 	 */
 	public CachingEnabledRestfulClient(Context context) {
-		mLogger = Logger.getInstance(getClass().getSimpleName());
+		mLogger = new SmartLogger(getClass().getSimpleName());
 		mHttpParams = new BasicHttpParams();
 		mResponseCache = new RestResponseCache();
 		mResponseCache.enableDiskCache(context, AbstractCache.DISK_CACHE_INTERNAL);
